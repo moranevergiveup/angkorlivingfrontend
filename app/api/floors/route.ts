@@ -14,52 +14,52 @@ export async function GET() {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
-// export async function POST(req: Request) {
-//   try {
-//     const authHeader = req.headers.get("authorization");
-//     const body = await req.json();
-//     const res = await fetch(`${API_URL}/api/floors`, {
-//       method: "POST",
-//       headers: {
-//       "Content-Type": "application/json",
-//       ...(authHeader ? { Authorization: authHeader } : {}),
-//     },
-//       body: JSON.stringify(body),
-//     });
-
-//     if (!res.ok) {
-//       return NextResponse.json({ error: "Failed to create floor" }, { status: res.status });
-//     }
-
-//     const data = await res.json();
-//     return NextResponse.json(data, { status: 201 });
-//   } catch {
-//     return NextResponse.json({ error: "Server error" }, { status: 500 });
-//   }
-// }
 export async function POST(req: Request) {
   try {
     const authHeader = req.headers.get("authorization");
-    const formData = await req.formData(); // ✅ handle file + fields
-
-    const res = await fetch(`${API_URL}/api/rooms`, {
+    const body = await req.json();
+    const res = await fetch(`${API_URL}/api/floors`, {
       method: "POST",
       headers: {
-        ...(authHeader ? { Authorization: authHeader } : {}),
-        // ❌ do not set Content-Type manually, fetch will handle multipart boundaries
-      },
-      body: formData,
+      "Content-Type": "application/json",
+      ...(authHeader ? { Authorization: authHeader } : {}),
+    },
+      body: JSON.stringify(body),
     });
 
     if (!res.ok) {
-      const errorText = await res.text();
-      return NextResponse.json({ error: errorText }, { status: res.status });
+      return NextResponse.json({ error: "Failed to create floor" }, { status: res.status });
     }
 
     const data = await res.json();
     return NextResponse.json(data, { status: 201 });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
+// export async function POST(req: Request) {
+//   try {
+//     const authHeader = req.headers.get("authorization");
+//     const formData = await req.formData(); // ✅ handle file + fields
+
+//     const res = await fetch(`${API_URL}/api/floors`, {
+//       method: "POST",
+//       headers: {
+//         ...(authHeader ? { Authorization: authHeader } : {}),
+//         // ❌ do not set Content-Type manually, fetch will handle multipart boundaries
+//       },
+//       body: formData,
+//     });
+
+//     if (!res.ok) {
+//       const errorText = await res.text();
+//       return NextResponse.json({ error: errorText }, { status: res.status });
+//     }
+
+//     const data = await res.json();
+//     return NextResponse.json(data, { status: 201 });
+//   } catch (error) {
+//     return NextResponse.json({ error: "Server error" }, { status: 500 });
+//   }
+// }
 
