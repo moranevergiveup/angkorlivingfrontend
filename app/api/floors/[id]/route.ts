@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-// ✅ GET
 export async function GET(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
@@ -29,7 +28,6 @@ export async function GET(
   }
 }
 
-// ✅ PUT (already correct, just switched to NextRequest)
 export async function PUT(
   req: NextRequest,
   context: { params: Promise<{ id: string }> }
@@ -62,7 +60,7 @@ export async function PUT(
   }
 }
 
-// ✅ DELETE
+
 export async function DELETE(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
