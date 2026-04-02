@@ -2,8 +2,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { getFloors, createFloor, updateFloor } from "../../../lib/api/floor";
-import Form from "../../../components/Form";
-import Table from "../../../components/Table";
+import Form from "../../../components/admin/Form";
+import Table from "../../../components/admin/Table";
 import { Floor, FloorRequest } from "../../../lib/types/floor";
 import toast from "react-hot-toast";
 

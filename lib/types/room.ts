@@ -13,3 +13,9 @@ export interface RoomRequest {
   price?: number;        
   imageFile?: File;      
 }
+export interface RoomRequestUpdate{
+      
+  status?: string;     
+  // price?: number;        
+  imageFile?: File;      
+}
