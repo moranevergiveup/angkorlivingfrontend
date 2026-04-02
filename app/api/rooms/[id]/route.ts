@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(
   req: NextRequest,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const roomId = context.params.id;
+    const { id } = await context.params; // ✅ await params
     const formData = await req.formData();
 
     const backendForm = new FormData();
@@ -19,7 +19,7 @@ export async function PUT(
       }
     }
 
-    const backendRes = await fetch(`${process.env.API_URL}/api/rooms/${roomId}`, {
+    const backendRes = await fetch(`${process.env.API_URL}/api/rooms/${id}`, {
       method: "PUT",
       body: backendForm,
     });
@@ -32,7 +32,7 @@ export async function PUT(
     const data = await backendRes.json();
     return NextResponse.json(data);
   } catch (err) {
-    console.error(`PUT /api/rooms/${context.params.id} error:`, err);
+    // console.error(`PUT /api/rooms/${await context.params.id} error:`, err);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
