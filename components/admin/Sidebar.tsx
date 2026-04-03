@@ -24,7 +24,7 @@ export default function Sidebar() {
   document.cookie = "role=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
 
   // Redirect to root (login page)
-  window.location.href = "/";
+  window.location.href = "/auth/login";
 };
 
 

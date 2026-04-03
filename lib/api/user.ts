@@ -11,7 +11,7 @@ export async function login(email:string, password:string) {
 }
 
 export async function getUsers(): Promise<User[]> {
-  return apiFetch("/api/users");
+  return apiFetch("/api/users/tenants");
 }
 export async function getUser(id: string): Promise<User> {
   return apiFetch(`/api/users/${id}`);
@@ -40,5 +40,13 @@ export async function resetPassword(id: string, token?: string): Promise<string>
   
      return apiFetch(`/api/users/${id}/reset-password`, {
     method: "PUT",
+  });
+}
+const API_URL = "http://localhost:8080";
+
+export async function getProfile() {
+  // const token = localStorage.getItem("token");
+    return apiFetch(`/api/users/profile`, {
+    method: "GET",
   });
 }
