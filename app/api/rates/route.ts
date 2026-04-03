@@ -26,7 +26,7 @@ export async function PUT(req: NextRequest) {
     const body = await req.json();
      const authHeader = req.headers.get("authorization");
 
-    const backendRes = await fetch(`http://localhost:8080/api/rates`, {
+    const backendRes = await fetch(`A${API_URL}/api/rates`, {
       method: "PUT",
        headers: {
         "Content-Type": "application/json",
@@ -48,26 +48,3 @@ export async function PUT(req: NextRequest) {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
-// export async function PUT(req: Request) {
-//   try {
-//     const authHeader = req.headers.get("authorization");
-//     const body = await req.json();
-//     const res = await fetch(`${API_URL}/api/rates`, {
-//       method: "POST",
-//       headers: {
-//       "Content-Type": "application/json",
-//       ...(authHeader ? { Authorization: authHeader } : {}),
-//     },
-//       body: JSON.stringify(body),
-//     });
-
-//     if (!res.ok) {
-//       return NextResponse.json({ error: "Failed to create floor" }, { status: res.status });
-//     }
-
-//     const data = await res.json();
-//     return NextResponse.json(data, { status: 201 });
-//   } catch {
-//     return NextResponse.json({ error: "Server error" }, { status: 500 });
-//   }
-// }
